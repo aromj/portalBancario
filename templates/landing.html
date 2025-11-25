@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Bienvenido a Banco Los Olivos</h1>
+  <p class="hero-subtitle">Portal bancario para fines académicos. Gestiona tus cuentas, realiza transferencias y consulta tus movimientos de forma segura.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="/login">Acceder a Mi Banca</a>
+    <a class="btn btn-secondary" href="/register">Crear Cuenta Nueva</a>
+  </div>
+</section>
+
+<section class="features">
+  <h2 class="section-title">Nuestros Servicios</h2>
+  <div class="grid">
+    <div class="card feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Seguridad</h3>
+      <p>Proyecto educativo con datos ficticios. <strong>No ingresar datos reales.</strong> Todas las contraseñas están protegidas con hash seguro.</p>
+    </div>
+    <div class="card feature-card">
+      <div class="feature-icon">💳</div>
+      <h3>Gestión de Cuentas</h3>
+      <p>Consulta tus cuentas de ahorros y corrientes. Visualiza saldos y movimientos en tiempo real.</p>
+    </div>
+    <div class="card feature-card">
+      <div class="feature-icon">💸</div>
+      <h3>Transferencias</h3>
+      <p>Realiza transferencias entre cuentas de forma rápida y segura. Historial completo de transacciones.</p>
+    </div>
+    <div class="card feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Movimientos</h3>
+      <p>Consulta el historial completo de tus transacciones. Filtra por cuenta y fecha.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-card">
+    <h2>¿Nuevo en nuestro banco?</h2>
+    <p>Crea tu cuenta gratuita y accede a todos nuestros servicios en línea. Recibirás cuentas de prueba con saldos iniciales.</p>
+    <a class="btn btn-primary" href="/register">Crear Cuenta Gratuita</a>
+  </div>
+</section>
+{% endblock %}

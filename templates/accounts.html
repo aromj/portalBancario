@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Cuentas{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <a href="/dashboard">Dashboard</a> <span>/</span> <span>Cuentas</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Mis Cuentas</h1>
+  <p class="page-subtitle">Gestiona y consulta todas tus cuentas bancarias</p>
+</div>
+
+{% if accounts %}
+<div class="cards">
+  {% for acc in accounts %}
+  <div class="card account-card">
+    <div class="account-header">
+      <div>
+        <h3>{{ acc.type }}</h3>
+        <span class="account-number">{{ acc.number }}</span>
+      </div>
+      <div class="account-type-badge">
+        {{ acc.type }}
+      </div>
+    </div>
+    <div class="account-balance">
+      <span class="balance-label">Saldo disponible</span>
+      <span class="balance-amount">${{ '{:,.2f}'.format(acc.balance) }}</span>
+    </div>
+    <div class="account-actions">
+      <a href="/movimientos?account_id={{ acc.id }}" class="btn btn-secondary btn-small">Ver Movimientos</a>
+      <a href="/transferencias" class="btn-link-small">Transferir</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="summary-section">
+  <div class="summary-card">
+    <div class="summary-item">
+      <span class="summary-label">Total de Cuentas</span>
+      <span class="summary-value">{{ accounts|length }}</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">Saldo Total</span>
+      <span class="summary-value">${{ '{:,.2f}'.format(accounts|sum(attribute='balance')) }}</span>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="empty-state">
+  <div class="empty-icon">💳</div>
+  <h2>No tienes cuentas registradas</h2>
+  <p>Contacta con soporte para crear una cuenta bancaria.</p>
+  <a href="/dashboard" class="btn btn-primary">Volver al Dashboard</a>
+</div>
+{% endif %}
+{% endblock %}
+

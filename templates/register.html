@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <span>Registrarse</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="auth-container">
+  <div class="auth-card">
+    <h1>Crear Cuenta</h1>
+    <p class="auth-subtitle">Regístrate y obtén acceso inmediato a tu portal bancario</p>
+    
+    {% if error %}
+    <div class="alert alert-error">
+      <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+    
+    <form method="post" action="/register" class="form">
+      <div class="form-group">
+        <label for="full_name">Nombre completo</label>
+        <input 
+          type="text" 
+          id="full_name"
+          name="full_name" 
+          placeholder="Juan Pérez"
+          required 
+          minlength="3"
+          autocomplete="name"
+        />
+        <small>Mínimo 3 caracteres</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email" 
+          placeholder="tu@email.com"
+          required 
+          autocomplete="email"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input 
+          type="password" 
+          id="password"
+          name="password" 
+          placeholder="••••••••"
+          required 
+          minlength="6"
+          autocomplete="new-password"
+        />
+        <small>Mínimo 6 caracteres</small>
+      </div>
+      
+      <button class="btn btn-primary btn-block" type="submit">Crear Cuenta</button>
+    </form>
+    
+    <div class="auth-footer">
+      <p>¿Ya tiene cuenta? <a href="/login">Inicie sesión aquí</a></p>
+    </div>
+    
+    <div class="info-box">
+      <p><strong>Nota:</strong> Al registrarte, recibirás automáticamente dos cuentas de prueba con saldos iniciales para que puedas comenzar a usar el portal.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

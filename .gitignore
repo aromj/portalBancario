@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+venv.bak/
+
+# Packages
+*.egg
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Secrets
+.env
+secrets.json
+*.pem
+*.key
+
+# Static/uploads (if you store large user files locally and don't want them in repo)
+/uploads/
+/media/
+
+# Mac/Windows temp
+*.swp
+*.swo
+
+# Test / coverage
+.pytest_cache/
+.coverage
+
+# Database dumps
+*.sql
+
+# Ignore local env files
+.env.local
+
+# Node (if present)
+node_modules/

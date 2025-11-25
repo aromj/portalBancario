@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Transferencias{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <a href="/dashboard">Dashboard</a> <span>/</span> <span>Transferencias</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Realizar Transferencia</h1>
+  <p class="page-subtitle">Transfiere dinero entre cuentas de forma segura</p>
+</div>
+
+{% if message %}
+<div class="alert alert-success">
+  <strong>Éxito:</strong> {{ message }}
+</div>
+{% endif %}
+
+{% if error %}
+<div class="alert alert-error">
+  <strong>Error:</strong> {{ error }}
+</div>
+{% endif %}
+
+<div class="form-container">
+  <form method="post" action="/transferencias" class="form">
+    <div class="form-group">
+      <label for="from_account">Cuenta de origen</label>
+      <select id="from_account" name="from_account" required>
+        <option value="">Seleccione una cuenta</option>
+        {% for acc in accounts %}
+        <option value="{{ acc.number }}">
+          {{ acc.type }} · {{ acc.number }} — Saldo: ${{ '{:,.2f}'.format(acc.balance) }}
+        </option>
+        {% endfor %}
+      </select>
+      <small>Selecciona la cuenta desde la cual deseas transferir</small>
+    </div>
+    
+    <div class="form-group">
+      <label for="to_account">Cuenta destino</label>
+      <input 
+        type="text" 
+        id="to_account"
+        name="to_account" 
+        placeholder="Ej: 3300330044" 
+        required 
+        pattern="[0-9]+"
+        minlength="10"
+      />
+      <small>Ingresa el número de cuenta destino (solo números)</small>
+    </div>
+    
+    <div class="form-group">
+      <label for="amount">Monto a transferir</label>
+      <div class="input-with-symbol">
+        <span class="input-symbol">$</span>
+        <input 
+          type="number" 
+          id="amount"
+          name="amount" 
+          step="0.01" 
+          min="0.01"
+          max="1000000"
+          placeholder="0.00" 
+          required 
+        />
+      </div>
+      <small>Monto mínimo: $0.01 | Máximo: $1,000,000.00</small>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Descripción (opcional)</label>
+      <input 
+        type="text" 
+        id="description"
+        name="description" 
+        placeholder="Ej: Pago de servicios, Préstamo, etc." 
+        maxlength="255"
+      />
+      <small>Describe el propósito de la transferencia</small>
+    </div>
+    
+    <button class="btn btn-primary btn-block" type="submit">💸 Confirmar Transferencia</button>
+  </form>
+</div>
+
+<div class="info-box">
+  <h3>💡 Información importante</h3>
+  <ul>
+    <li>Verifica que el número de cuenta destino sea correcto antes de confirmar</li>
+    <li>Las transferencias se procesan de forma inmediata</li>
+    <li>No puedes transferir a la misma cuenta de origen</li>
+    <li>El saldo disponible debe ser suficiente para cubrir el monto</li>
+  </ul>
+  <p><strong>Cuenta de prueba:</strong> 3300330044 (Beneficiario Prueba)</p>
+</div>
+{% endblock %}

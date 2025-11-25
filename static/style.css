@@ -1,0 +1,516 @@
+/* =======================================================
+   BANCO LOS OLIVOS 2025 – ESTILO PICHINCHA MODERNO
+   Diseño limpio, minimalista y profesional
+   ======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #1A8754;
+  --primary-hover: #156042;
+  --primary-light: #E8F5F1;
+  --secondary: #00A86B;
+  --success: #27AE60;
+  --danger: #E74C3C;
+  --warning: #F39C12;
+  --gray-50: #FAFBFC;
+  --gray-100: #F3F5F7;
+  --gray-200: #E8EAED;
+  --gray-300: #D4D8DC;
+  --gray-600: #666D7A;
+  --gray-700: #4A5568;
+  --gray-800: #2D3748;
+  --gray-900: #1A202C;
+  --white: #FFFFFF;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =================================== */
+/* Layout general */
+/* =================================== */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+main { padding: 2rem 0 4rem; }
+
+/* Header */
+.header {
+  background: var(--white);
+  border-bottom: 2px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+}
+.brand a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: var(--transition);
+}
+.brand-link:hover {
+  opacity: 0.8;
+}
+.brand-logo {
+  height: 45px !important;
+  width: 45px !important;
+  max-width: 45px !important;
+  min-width: 45px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+  transition: var(--transition);
+}
+.brand-link:hover .brand-logo {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+}
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  letter-spacing: -0.5px;
+}
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.nav a {
+  color: var(--gray-700);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.nav a:hover, .nav a.active {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.nav a.logout-link {
+  color: var(--danger);
+}
+.nav a.logout-link:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  margin: 1.5rem 0 2rem;
+  font-size: 0.95rem;
+  color: var(--gray-600);
+}
+.breadcrumbs a { color: var(--primary); text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+
+/* Tipografía */
+h1 { font-size: 2.75rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--gray-900); }
+h2 { font-size: 1.75rem; font-weight: 700; margin: 3rem 0 2rem; color: var(--gray-900); }
+h3 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+.page-header { margin-bottom: 2rem; }
+.page-subtitle { color: var(--gray-600); font-size: 1.1rem; margin: 0.5rem 0 0; }
+
+/* Section spacing */
+.section {
+  margin: 3rem 0;
+  padding: 2rem 0;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Cards con más espaciado */
+.card, .auth-card, .account-card, .feature-card, .cta-card, .profile-card, .stat-card, .link-card, .empty-state, .info-box {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: var(--transition);
+  border: 1px solid #E8E8EA;
+}
+.card:hover, .account-card:hover, .link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  border-color: var(--primary-light);
+}
+
+/* Account card específico - estilo Pichincha */
+.account-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 260px;
+  background: linear-gradient(135deg, rgba(26, 135, 84, 0.02) 0%, rgba(26, 135, 84, 0.01) 100%);
+  border: 1px solid var(--gray-200);
+}
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(26, 135, 84, 0.1);
+}
+.account-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--gray-800);
+  font-weight: 600;
+}
+.account-number {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 500;
+  display: block;
+  margin-top: 0.4rem;
+  letter-spacing: 0.5px;
+}
+.account-type-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.account-balance {
+  flex: 1;
+  margin: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.balance-label {
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-weight: 500;
+}
+.balance-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+.account-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(26, 135, 84, 0.1);
+}
+
+/* Grid de tarjetas */
+.cards, .links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin: 2rem 0;
+}
+
+/* Summary Card - estilo BBVA */
+.summary-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 12px rgba(26, 135, 84, 0.2);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.summary-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.85;
+  letter-spacing: 0.3px;
+}
+.summary-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Saldo destacado */
+.balance-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+/* Tablas */
+.table-container {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+.table th {
+  background: var(--gray-100);
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.table td {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--gray-200);
+}
+.table tr:hover { background: var(--gray-50); }
+
+/* Badges y montos */
+.badge {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.badge-success { background: #ECFDF5; color: #065F46; }
+.badge-danger  { background: #FEE2E2; color: #991B1B; }
+.amount.positive { color: var(--success); font-weight: 700; }
+.amount.negative { color: var(--danger); font-weight: 700; }
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,78,235,0.35);
+}
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-800);
+  border: 1px solid var(--gray-300);
+}
+.btn-secondary:hover {
+  background: var(--gray-200);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+}
+.btn-small {
+  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+}
+.btn-block { width: 100%; justify-content: center; }
+
+/* Link buttons - ahora con estilo de botones */
+.btn-link, .btn-link-small {
+  color: var(--primary);
+  font-weight: 600;
+  background: var(--primary-light);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.btn-link:hover, .btn-link-small:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,78,235,0.2);
+}
+.btn-link-small {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* =================================== */
+/* INPUTS & SELECTS – ESTILO 2025 PREMIUM */
+/* =================================== */
+.form-group {
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1.1rem 1.2rem;
+  font-size: 1.05rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: var(--gray-100);
+  transition: all 0.28s ease;
+  font-family: inherit;
+  color: var(--gray-900);
+}
+
+/* Estado normal → fondo gris muy claro + borde sutil */
+.form-group input,
+.form-group select {
+  background-color: var(--gray-50);
+  border: 2px solid var(--gray-200);
+}
+
+/* Al hacer foco → borde azul + sombra suave + fondo blanco */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  background-color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 5px var(--primary-light);
+  transform: translateY(-1px);
+}
+
+/* Cuando está lleno y válido → borde verde sutil (opcional, queda muy pro) */
+.form-group input:valid:focus,
+.form-group input:not(:placeholder-shown):focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 5px rgba(0, 212, 176, 0.15);
+}
+
+/* Placeholder más elegante */
+.form-group input::placeholder,
+.form-group select::placeholder {
+  color: var(--gray-500);
+  opacity: 0.8;
+}
+
+/* Input con símbolo $ (transferencias) */
+.input-with-symbol {
+  position: relative;
+}
+.input-symbol {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  pointer-events: none;
+  z-index: 1;
+}
+.input-with-symbol input {
+  padding-left: 3rem !important;
+}
+
+/* Pequeña ayuda debajo del input */
+.form-group small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+}
+
+/* Alertas */
+.alert {
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--radius-sm);
+  margin: 1.5rem 0;
+  border-left: 5px solid;
+  font-weight: 500;
+}
+.alert-success { background: #F0FDF4; color: #166534; border-color: var(--success); }
+.alert-error   { background: #FEF2F2; color: #991B1B; border-color: var(--danger); }
+
+/* Empty states */
+.empty-state {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--gray-600);
+}
+.empty-icon { font-size: 5rem; margin-bottom: 1rem; }
+
+/* Hero & Landing */
+.hero {
+  text-align: center;
+  padding: 5rem 0 4rem;
+}
+.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+.hero-subtitle { font-size: 1.3rem; color: var(--gray-600); max-width: 700px; margin: 0 auto 2rem; }
+.hero-actions { gap: 1rem; }
+
+/* Footer */
+.footer {
+  margin-top: 6rem;
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--gray-600);
+  border-top: 1px solid var(--gray-200);
+  background: var(--white);
+}
+.footer-note { font-size: 0.9rem; margin-top: 0.5rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 { font-size: 2.3rem; }
+  .hero h1 { font-size: 2.8rem; }
+  .header-content { flex-direction: column; gap: 1rem; }
+  .nav { justify-content: center; flex-wrap: wrap; }
+  .cards, .links-grid { grid-template-columns: 1fr; }
+  .profile-container { grid-template-columns: 1fr; }
+}
+

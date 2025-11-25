@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Movimientos{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <a href="/dashboard">Dashboard</a> <span>/</span> <span>Movimientos</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Historial de Movimientos</h1>
+  <p class="page-subtitle">Consulta todas tus transacciones bancarias</p>
+</div>
+
+{% if accounts|length > 1 %}
+<div class="filter-section">
+  <label for="account-filter">Filtrar por cuenta:</label>
+  <select id="account-filter" class="filter-select" onchange="window.location.href=this.value ? '/movimientos?account_id=' + this.value : '/movimientos'">
+    <option value="">Todas las cuentas</option>
+    {% for acc in accounts %}
+    <option value="{{ acc.id }}" {% if selected_account_id == acc.id %}selected{% endif %}>
+      {{ acc.type }} · {{ acc.number }}
+    </option>
+    {% endfor %}
+  </select>
+</div>
+{% endif %}
+
+{% if transactions %}
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha y Hora</th>
+        <th>Cuenta</th>
+        <th>Tipo</th>
+        <th>Monto</th>
+        <th>Contraparte</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tx in transactions %}
+      <tr>
+        <td>{{ tx.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+        <td><code>{{ tx.account.number }}</code></td>
+        <td>
+          <span class="badge badge-{{ 'success' if tx.type.value == 'CREDIT' else 'danger' }}">
+            {{ 'Abono' if tx.type.value == 'CREDIT' else 'Débito' }}
+          </span>
+        </td>
+        <td class="amount {{ 'positive' if tx.type.value == 'CREDIT' else 'negative' }}">
+          {{ '+' if tx.type.value == 'CREDIT' else '-' }}${{ '{:,.2f}'.format(tx.amount) }}
+        </td>
+        <td>{{ tx.counterparty or '-' }}</td>
+        <td>{{ tx.description or '-' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="transactions-summary">
+  <p><strong>Total de transacciones mostradas:</strong> {{ transactions|length }}</p>
+</div>
+{% else %}
+<div class="empty-state">
+  <div class="empty-icon">📊</div>
+  <h2>No hay movimientos registrados</h2>
+  <p>{% if selected_account_id %}Esta cuenta no tiene movimientos aún.{% else %}Aún no has realizado ninguna transacción.{% endif %}</p>
+  <a href="/transferencias" class="btn btn-primary">Realizar Primera Transferencia</a>
+  <a href="/dashboard" class="btn btn-secondary">Volver al Dashboard</a>
+</div>
+{% endif %}
+{% endblock %}
+

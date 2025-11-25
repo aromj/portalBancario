@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <span>Dashboard</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Dashboard</h1>
+  <p class="page-subtitle">Bienvenido, {{ user.full_name }}</p>
+</div>
+
+{% if total_balance is defined %}
+<div class="summary-card">
+  <div class="summary-item">
+    <span class="summary-label">Saldo Total</span>
+    <span class="summary-value">${{ '{:,.2f}'.format(total_balance) }}</span>
+  </div>
+  <div class="summary-item">
+    <span class="summary-label">Cuentas Activas</span>
+    <span class="summary-value">{{ accounts|length }}</span>
+  </div>
+</div>
+{% endif %}
+
+<section class="section">
+  <div class="section-header">
+    <h2>Mis Cuentas</h2>
+    <a href="/cuentas" class="btn-link">Ver todas →</a>
+  </div>
+  
+  {% if accounts %}
+  <div class="cards">
+    {% for acc in accounts %}
+    <div class="card account-card">
+      <div class="account-header">
+        <h3>{{ acc.type }}</h3>
+        <span class="account-number">{{ acc.number }}</span>
+      </div>
+      <div class="account-balance">
+        <span class="balance-label">Saldo disponible</span>
+        <span class="balance-amount">${{ '{:,.2f}'.format(acc.balance) }}</span>
+      </div>
+      <div class="account-actions">
+        <a href="/movimientos?account_id={{ acc.id }}" class="btn-link-small">Ver movimientos</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>No tienes cuentas registradas. Contacta con soporte para crear una cuenta.</p>
+  </div>
+  {% endif %}
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Últimos Movimientos</h2>
+    <a href="/movimientos" class="btn-link">Ver todos →</a>
+  </div>
+  
+  {% if transactions %}
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cuenta</th>
+          <th>Tipo</th>
+          <th>Monto</th>
+          <th>Contraparte</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tx in transactions %}
+        <tr>
+          <td>{{ tx.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+          <td><code>{{ tx.account.number }}</code></td>
+          <td>
+            <span class="badge badge-{{ 'success' if tx.type.value == 'CREDIT' else 'danger' }}">
+              {{ 'Abono' if tx.type.value == 'CREDIT' else 'Débito' }}
+            </span>
+          </td>
+          <td class="amount {{ 'positive' if tx.type.value == 'CREDIT' else 'negative' }}">
+            {{ '+' if tx.type.value == 'CREDIT' else '-' }}${{ '{:,.2f}'.format(tx.amount) }}
+          </td>
+          <td>{{ tx.counterparty or '-' }}</td>
+          <td>{{ tx.description }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>No hay movimientos recientes.</p>
+    <a href="/transferencias" class="btn btn-primary">Realizar primera transferencia</a>
+  </div>
+  {% endif %}
+</section>
+
+<div class="quick-actions">
+  <a href="/transferencias" class="btn btn-primary">💸 Realizar Transferencia</a>
+  <a href="/movimientos" class="btn btn-secondary">📊 Ver Todos los Movimientos</a>
+</div>
+{% endblock %}

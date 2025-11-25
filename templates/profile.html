@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Mi Perfil{% endblock %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+  <a href="/">Inicio</a> <span>/</span> <a href="/dashboard">Dashboard</a> <span>/</span> <span>Mi Perfil</span>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Mi Perfil</h1>
+  <p class="page-subtitle">Información de tu cuenta bancaria</p>
+</div>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <span>{{ user.full_name[0].upper() }}</span>
+      </div>
+      <div class="profile-info">
+        <h2>{{ user.full_name }}</h2>
+        <p class="profile-email">{{ user.email }}</p>
+      </div>
+    </div>
+    
+    <div class="profile-details">
+      <div class="detail-item">
+        <span class="detail-label">Nombre completo</span>
+        <span class="detail-value">{{ user.full_name }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Correo electrónico</span>
+        <span class="detail-value">{{ user.email }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">ID de usuario</span>
+        <span class="detail-value"><code>#{{ user.id }}</code></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="stat-card">
+      <div class="stat-icon">💳</div>
+      <div class="stat-content">
+        <span class="stat-label">Cuentas Activas</span>
+        <span class="stat-value">{{ accounts|length }}</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-content">
+        <span class="stat-label">Saldo Total</span>
+        <span class="stat-value">${{ '{:,.2f}'.format(accounts|sum(attribute='balance')) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quick-links">
+  <h3>Accesos Rápidos</h3>
+  <div class="links-grid">
+    <a href="/dashboard" class="link-card">
+      <span class="link-icon">📊</span>
+      <span class="link-text">Dashboard</span>
+    </a>
+    <a href="/cuentas" class="link-card">
+      <span class="link-icon">💳</span>
+      <span class="link-text">Mis Cuentas</span>
+    </a>
+    <a href="/movimientos" class="link-card">
+      <span class="link-icon">📋</span>
+      <span class="link-text">Movimientos</span>
+    </a>
+    <a href="/transferencias" class="link-card">
+      <span class="link-icon">💸</span>
+      <span class="link-text">Transferencias</span>
+    </a>
+  </div>
+</div>
+
+<div class="info-box">
+  <h3>ℹ️ Información de Seguridad</h3>
+  <ul>
+    <li>Tu contraseña está protegida con hash seguro (Argon2)</li>
+    <li>No compartas tus credenciales con nadie</li>
+    <li>Este es un proyecto académico - no uses datos reales</li>
+    <li>Para cambiar tu contraseña, contacta con soporte</li>
+  </ul>
+</div>
+{% endblock %}
+

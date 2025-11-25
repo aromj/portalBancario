@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Portal Bancario{% endblock %} · Banco Los Olivos</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="brand">
+          <a href="{% if user %}/dashboard{% else %}/{% endif %}" class="brand-link">
+            <img src="/static/logo.png" alt="Banco Los Olivos" class="brand-logo" width="60" height="50">
+            <span class="brand-text">Banco Los Olivos</span>
+          </a>
+        </div>
+        <nav class="nav">
+          {% if user %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/cuentas">Cuentas</a>
+            <a href="/movimientos">Movimientos</a>
+            <a href="/transferencias">Transferencias</a>
+            <a href="/perfil">Perfil</a>
+            <a href="/logout" class="logout-link">Salir</a>
+          {% else %}
+            <a href="/login">Acceder</a>
+            <a href="/register" class="btn-secondary">Registrarse</a>
+          {% endif %}
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    {% block breadcrumbs %}{% endblock %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Banco Los Olivos — Proyecto académico</p>
+      <p class="footer-note">⚠️ Este es un proyecto educativo. No ingresar datos reales.</p>
+    </div>
+  </footer>
+</body>
+</html>
