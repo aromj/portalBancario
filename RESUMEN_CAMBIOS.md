@@ -1,8 +1,8 @@
-# 📋 Resumen de Cambios Específicos
+# Resumen de Cambios Específicos
 
 ## Cambios Implementados
 
-### 🔧 Backend (`main.py`)
+### Backend (`main.py`)
 
 #### Rutas Agregadas
 - ✅ `/cuentas` - Página de gestión de cuentas
@@ -30,7 +30,7 @@ validate_amount(amount: float) -> tuple[bool, str]
 
 ---
 
-### 🔧 Backend (`crud.py`)
+### Backend (`crud.py`)
 
 #### Función Agregada
 ```python
@@ -50,7 +50,7 @@ get_transactions_by_account(db: Session, account_id: int, limit: int = 100) -> l
 
 ---
 
-### 🎨 Frontend - Templates
+### Frontend - Templates
 
 #### `base.html`
 - ✅ Navegación mejorada con todas las rutas
@@ -115,7 +115,7 @@ get_transactions_by_account(db: Session, account_id: int, limit: int = 100) -> l
 
 ---
 
-### 🎨 Frontend - CSS (`style.css`)
+### Frontend - CSS (`style.css`)
 
 #### Completamente Reescrito
 - ✅ Sistema de variables CSS para consistencia
@@ -150,7 +150,7 @@ get_transactions_by_account(db: Session, account_id: int, limit: int = 100) -> l
 
 ---
 
-## 📊 Estadísticas
+## Estadísticas
 
 ### Archivos Modificados: 9
 1. `main.py`
@@ -178,7 +178,7 @@ get_transactions_by_account(db: Session, account_id: int, limit: int = 100) -> l
 
 ---
 
-## ✅ Checklist de Mejoras
+## Checklist de Mejoras
 
 ### Arquitectura de Información
 - [x] Jerarquía clara de información
@@ -221,7 +221,7 @@ get_transactions_by_account(db: Session, account_id: int, limit: int = 100) -> l
 
 ---
 
-## 🚀 Próximos Pasos Recomendados
+## Próximos Pasos Recomendados
 
 1. **Testing**: Probar todas las rutas y funcionalidades
 2. **Documentación**: Agregar más comentarios si es necesario
