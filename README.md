@@ -22,6 +22,7 @@ python seed.py
 ## 4) Ejecutar el servidor
 ```bash
 uvicorn main:app --reload
+C:/Users/Admin/AppData/Local/Programs/Python/Python311/python.exe -m uvicorn main:app --reload
 ```
 Abrir: http://127.0.0.1:8000
 
